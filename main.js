@@ -60,15 +60,25 @@ class FloresAmarillasApp {
         // Solo vincular los controles existentes del HTML
         this.bindControlEvents();
         
-        // Configurar estado inicial
+        // Configurar estado inicial e intentar reproducir
         if (this.audio) {
-            if (this.audio.paused) {
-                document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">▶️</span>';
-                this.isPlaying = false;
-            } else {
-                document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">⏸️</span>';
-                this.isPlaying = true;
+            const playPromise = this.audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Autoplay started
+                    document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">⏸️</span>';
+                    this.isPlaying = true;
+                    this.resumeAnimations(); // Keep animations running
+                }).catch(error => {
+                    // Autoplay was prevented.
+                    console.warn('Autoplay was prevented. User interaction needed.', error);
+                    document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">▶️</span>';
+                    this.isPlaying = false;
+                    this.pauseAnimations(); // Pause animations since audio is paused
+                    this.showPlayPrompt();
+                });
             }
+
             document.getElementById('muteBtn').innerHTML = this.audio.muted ? '<span class="mute-icon">🔇</span>' : '<span class="mute-icon">🔊</span>';
         }
     }
