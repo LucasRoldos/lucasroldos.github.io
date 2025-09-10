@@ -1,0 +1,152 @@
+/* ===== GIRASOLES ===== */
+
+.flower--sunflower-1 {
+    position: absolute;
+    bottom: 15%;
+    left: 15%;
+    transform: scale(0.45) rotate(0deg);
+    animation: moving-sunflower-1 5s ease-in-out infinite;
+    
+}@keyframes moving-sunflower-1 {
+    0%, 100% {
+        transform: scale(0.45) rotate(-2deg);
+    }
+    50% {
+        transform: scale(0.45) rotate(2deg);
+    }
+}
+
+.flower--sunflower-1 .flower__line {
+    height: 45vmin;
+    animation-delay: 2.4s;
+}
+
+
+.flower__leafs--sunflower {
+    position: relative;
+    animation: blooming-sunflower 2s backwards;
+}
+
+.flower__leafs--sunflower-1 {
+    animation-delay: 2.4s;
+}
+
+.flower__leafs--sunflower-2 {
+    animation-delay: 2.7s;
+}
+
+.flower__leaf--sunflower {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 8vmin;
+    height: 10vmin;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background-color: #FFFF00;
+    background-image: linear-gradient(to bottom, #FFFF00, #FFD700);
+    transform-origin: bottom center;
+    opacity: 0.9;
+    box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.4);
+}
+
+.flower__leaf--sunflower-1-1 {
+    transform: translate(-50%, 0%) rotate(0deg);
+}
+
+.flower__leaf--sunflower-1-2 {
+    transform: translate(-50%, 0%) rotate(60deg);
+}
+
+.flower__leaf--sunflower-1-3 {
+    transform: translate(-50%, 0%) rotate(120deg);
+}
+
+.flower__leaf--sunflower-1-4 {
+    transform: translate(-50%, 0%) rotate(180deg);
+}
+
+.flower__leaf--sunflower-1-5 {
+    transform: translate(-50%, 0%) rotate(240deg);
+}
+
+.flower__leaf--sunflower-1-6 {
+    transform: translate(-50%, 0%) rotate(300deg);
+}
+
+
+
+.flower__sunflower-center {
+    position: absolute;
+    left: -3vmin;
+    top: -3vmin;
+    width: 6vmin;
+    height: 6vmin;
+    border-radius: 50%;
+    background-color: #8b4513;
+    background-image: radial-gradient(circle, #8b4513, #654321);
+    z-index: 10;
+}
+
+.flower__sunflower-center::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #654321;
+    background-image: repeating-linear-gradient(
+        45deg,
+        #654321 0px,
+        #654321 2px,
+        #8b4513 2px,
+        #8b4513 4px
+    );
+}
+
+.flower__line--sunflower {
+    background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.2),
+        transparent,
+        rgba(255, 255, 255, 0.2)
+    ),
+    linear-gradient(to top, transparent 10%, #32CD32, #90EE90);
+}
+
+@keyframes moving-flower-sunflower-1 {
+    0%, 100% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(10deg) rotateX(5deg);
+    }
+}
+
+@keyframes moving-flower-sunflower-2 {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(-10deg) rotateX(5deg);
+    }
+}
+
+@keyframes blooming-sunflower {
+    0% {
+        transform: scale(0);
+    }
+}
+
+@keyframes growing-leaf {
+  0% {
+    transform: scale(0);
+  }
+}
+
+.flower__line--sunflower .flower__line__leaf {
+  animation: growing-leaf 3s backwards;
+  will-change: transform;
+}

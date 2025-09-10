@@ -1,0 +1,55 @@
+.shooting-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 2px;
+    /* Alineamos el gradiente con la dirección del movimiento */
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.6));
+    opacity: 0;
+    transform-origin: left center;
+    transform: translateX(-150px) rotate(20deg);
+}
+
+.shooting-star.shooting {
+    animation: shooting 7s linear;
+}
+
+@keyframes shooting {
+    0% {
+        transform: translateX(-150px) translateY(0vh) rotate(20deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        /* Mantenemos el mismo ángulo durante toda la animación para que la estela esté alineada */
+        transform: translateX(100vw) translateY(40vh) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+.shooting-star:nth-child(1) {
+    top: 5%;
+    left: -5%;
+    animation-delay: 20s;
+    animation-duration: 5s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 10%;
+    left: -2%;
+    animation-delay: 23s;
+    animation-duration: 4s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 15%;
+    left: 0;
+    animation-delay: 8s;
+    animation-duration: 6s;
+}

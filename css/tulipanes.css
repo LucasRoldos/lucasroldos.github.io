@@ -1,0 +1,201 @@
+/* ===== TULIPANES ===== */
+
+.flower--tulip-1 {
+    position: absolute;
+    bottom: -10%;
+    left: 3%;
+    transform: rotate(0deg);
+    animation: moving-tulip-1 4s ease-in-out infinite;
+    
+}@keyframes moving-tulip-1 {
+    0%, 100% {
+        transform: scale(1.2) rotate(-3deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(3deg);
+    }
+}
+
+.flower--tulip-1 .flower__line {
+    height: 65vmin;
+    animation-delay: 1.2s;
+}
+
+.flower--tulip-1 .flower__line__leaf--tulip-1 {
+    animation: blooming-leaf-right var(--fl-speed) 2.2s backwards;
+}
+
+.flower--tulip-1 .flower__line__leaf--tulip-2 {
+    animation: blooming-leaf-right var(--fl-speed) 2.0s backwards;
+}
+
+.flower--tulip-1 .flower__line__leaf--tulip-3 {
+    animation: blooming-leaf-left var(--fl-speed) 1.8s backwards;
+}
+
+.flower--tulip-2 {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    transform: rotate(0deg);
+    animation: moving-tulip-2 4.5s ease-in-out infinite;
+    
+}
+
+.flower--tulip-2 .flower__line {
+    height: 60vmin;
+    animation-delay: 1.5s;
+}
+
+.flower--tulip-2 .flower__line__leaf--tulip-1 {
+    animation: blooming-leaf-right var(--fl-speed) 2.5s backwards;
+}
+
+.flower--tulip-2 .flower__line__leaf--tulip-2 {
+    animation: blooming-leaf-left var(--fl-speed) 2.3s backwards;
+}
+
+.flower--tulip-2 .flower__line__leaf--tulip-3 {
+    animation: blooming-leaf-left var(--fl-speed) 2.1s backwards;
+}
+
+.flower__leafs--tulip {
+    position: relative;
+    animation: blooming-tulip 2s backwards;
+}
+
+.flower__leafs--tulip-1 {
+    animation-delay: 1.8s;
+}
+
+.flower__leafs--tulip-2 {
+    animation-delay: 2.1s;
+}
+
+.flower__leaf--tulip {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 7vmin;
+    height: 12vmin;
+    border-radius: 30% 70% 70% 30% / 60% 60% 40% 40%;
+    background-color: #FFFF00;
+    background-image: linear-gradient(135deg, #FFFF00, #d1b200);
+    transform-origin: bottom center;
+    opacity: 0.9;
+    box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.3);
+}
+
+.flower__leaf--tulip-1-1 {
+    transform: translate(-80%, 2%) rotateY(45deg) rotateX(-30deg);
+}
+
+.flower__leaf--tulip-1-2 {
+    transform: translate(-50%, -5%) rotateX(20deg);
+}
+
+.flower__leaf--tulip-1-3 {
+    transform: translate(-20%, 2%) rotateY(-45deg) rotateX(-30deg);
+}
+
+.flower__leaf--tulip-1-4 {
+    width: 6vmin;
+    height: 6vmin;
+    transform-origin: bottom left;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: translate(-10%, 25%) rotateX(60deg) rotate(-30deg);
+    background-color: #2f3542;
+    z-index: 1000;
+    opacity: 0.8;
+}
+
+.flower__leaf--tulip-2-1 {
+    transform: translate(-80%, 2%) rotateY(45deg) rotateX(-30deg);
+}
+
+.flower__leaf--tulip-2-2 {
+    transform: translate(-50%, -5%) rotateX(20deg);
+}
+
+.flower__leaf--tulip-2-3 {
+    transform: translate(-20%, 2%) rotateY(-45deg) rotateX(-30deg);
+}
+
+.flower__leaf--tulip-2-4 {
+    width: 6vmin;
+    height: 6vmin;
+    transform-origin: bottom left;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: translate(-10%, 25%) rotateX(60deg) rotate(-30deg);
+    background-color: #2f3542;
+    z-index: 1000;
+    opacity: 0.8;
+}
+
+.flower__tulip-center {
+    position: absolute;
+    left: -2.5vmin;
+    top: -2vmin;
+    width: 5vmin;
+    height: 4vmin;
+    border-radius: 50%;
+    background-color: #b9a701;
+    background-image: linear-gradient(to bottom, #fffb00, #ffee00);
+}
+
+.flower__line--tulip {
+    background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.2),
+        transparent,
+        rgba(255, 255, 255, 0.2)
+    ),
+    linear-gradient(to top, transparent 10%, #32CD32, #90EE90);
+}
+
+@keyframes moving-flower-tulip-1 {
+    0%, 100% {
+        transform: rotate(10deg);
+    }
+    50% {
+        transform: rotate(15deg) rotateX(10deg);
+    }
+}
+
+@keyframes moving-flower-tulip-2 {
+    0%, 100% {
+        transform: rotate(-15deg);
+    }
+    50% {
+        transform: rotate(-10deg) rotateX(10deg);
+    }
+}
+
+@keyframes blooming-tulip {
+    0% {
+        transform: scale(0);
+    }
+}
+
+@keyframes moving-tulip-2 {
+    0%, 100% {
+        transform: rotate(-4deg) scale(0.4);
+    }
+    50% {
+        transform: rotate(4deg) scale(0.405);
+    }
+}
+
+@media (max-width: 768px) {
+    .flower--tulip-1 {
+        transform: scale(1.2) rotate(0deg);
+        left: 3%;
+        bottom: -10%;
+    }
+
+    .flower--tulip-2 {
+        transform: scale(0.4) rotate(0deg);
+        right: 10%;
+        bottom: 14%;
+    }
+}

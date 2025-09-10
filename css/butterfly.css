@@ -1,0 +1,140 @@
+@keyframes borboletas-pos-loop {
+  0% {transform: translate(0,0);}
+  25% {transform: translate(100px,0);}
+  50% {transform: translate(30px,-70px);}
+  75% {transform: translate(00px,20px);}
+  100% {transform: translate(-100px,-50px);}
+}
+
+.borboletas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: borboletas-pos-loop 9.1s ease-in-out infinite alternate-reverse; /* 30% más lento: 7s * 1.3 = 9.1s */
+  z-index: 100;
+}
+
+.borboleta-oval-squish {
+  transform: scale(0.3,1);
+}
+
+@keyframes borboleta-radial-loop {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);}
+}
+
+.borboleta-1 {
+  animation: borboleta-radial-loop 13s linear infinite; /* 30% más lento: 10s * 1.3 = 13s */
+}
+
+.borboleta-2 {
+  animation: borboleta-radial-loop 19.5s linear infinite; /* 30% más lento: 15s * 1.3 = 19.5s */
+}
+
+@keyframes borboleta-oval-loop {
+  0% {transform: rotate(0) scale(3.3,1);}
+  100% {transform: rotate(-360deg) scale(3.3,1);}
+}
+
+.borboleta-oval {
+  position: absolute;
+  animation: borboleta-radial-loop 1.56s linear infinite; /* 30% más lento: 1.2s * 1.3 = 1.56s */
+}
+
+.borboleta-radial {
+  position: absolute;
+  left: 80px;
+  top: 0;
+  animation: borboleta-oval-loop 1.56s linear infinite; /* 30% más lento: 1.2s * 1.3 = 1.56s */
+}
+
+.borboleta-2 .borboleta-oval {
+  animation: borboleta-radial-loop 1.95s linear infinite; /* 30% más lento: 1.5s * 1.3 = 1.95s */
+}
+
+.borboleta-2 .borboleta-radial {
+  animation: borboleta-oval-loop 1.95s linear infinite; /* 30% más lento: 1.5s * 1.3 = 1.95s */
+}
+
+.borboleta-gfx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 20px;
+}
+
+@keyframes borboleta-gfx-upright-loop {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(-360deg);}
+}
+
+.borboleta-1 .borboleta-gfx {
+  animation: borboleta-gfx-upright-loop 13s linear infinite; /* 30% más lento: 10s * 1.3 = 13s */
+}
+
+.borboleta-2 .borboleta-gfx {
+  animation: borboleta-gfx-upright-loop 19.5s linear infinite; /* 30% más lento: 15s * 1.3 = 19.5s */
+}
+
+@keyframes borboleta-anim-loop {
+  0% {transform: scale(1,1.2) rotate(40deg);}
+  100% {transform: scale(0.7,-1) rotate(-40deg);}
+}
+
+@keyframes resplandor-loop {
+  0% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.7); opacity: 0.3; }
+}
+
+.borboleta-anim {
+  background: radial-gradient(closest-side at 50% 50%, #8a2be2 50%, transparent 50%), 
+              radial-gradient(closest-side at 50% 50%, #4b0082 50%, transparent 50%);
+  background-repeat: no-repeat;
+  background-size: 90% 70%, 100% 70%;
+  background-position: 20% -40%, 0 40%;
+  width: 25px;
+  height: 20px;
+  animation: borboleta-anim-loop 195ms ease-in-out infinite alternate-reverse; /* 30% más lento: 150ms * 1.3 = 195ms */
+  position: relative;
+}
+
+.borboleta-anim::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.8) 0%, rgba(138, 43, 226, 0.4) 40%, transparent 70%);
+  border-radius: 50% 40% 50% 60%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: -1;
+  animation: resplandor-loop 2s ease-in-out infinite alternate;
+}
+
+/* Estilos adicionales para mejorar la apariencia */
+.borboleta-2 .borboleta-anim {
+  background: radial-gradient(closest-side at 50% 50%, #9370db 50%, transparent 50%), 
+              radial-gradient(closest-side at 50% 50%, #2b0057 50%, transparent 50%);
+}
+
+.borboleta-2 .borboleta-anim::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(147, 112, 219, 0.8) 0%, rgba(147, 112, 219, 0.4) 40%, transparent 70%);
+  border-radius: 50% 40% 50% 60%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: -1;
+  animation: resplandor-loop 2.5s ease-in-out infinite alternate;
+}
+
+/* Ocultar la mariposa original */
+.butterfly {
+  display: none;
+}

@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary-color: #fff;
+    --bg-color: #111;
+    --accent-color: rgba(255, 255, 255, 0.1);
+    --border-color: rgba(255, 255, 255, 0.25);
+    --backdrop-blur: blur(25px);
+    --transition-speed: 0.3s;
+}
+
+/* Evita auto-escalado agresivo de texto en algunos Android */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    /* Asegura espacios seguros en móviles con notch o pantallas curvas */
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-right: calc(20px + env(safe-area-inset-right, 0px));
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    padding-left: calc(20px + env(safe-area-inset-left, 0px));
+    overflow-x: hidden;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.greetings {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    /* Ensure it spans full width so contents can be perfectly centered */
+    width: 100%;
+}
+
+.greetings h1 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+}
+
+.greetings span {
+    display: inline-block;
+    animation: glow 2s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.greetings span:nth-child(n) {
+    animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+.greetings span:nth-child(1) { --i: 0; }
+.greetings span:nth-child(2) { --i: 1; }
+.greetings span:nth-child(3) { --i: 2; }
+.greetings span:nth-child(4) { --i: 3; }
+.greetings span:nth-child(5) { --i: 4; }
+.greetings span:nth-child(6) { --i: 5; }
+.greetings span:nth-child(8) { --i: 6; }
+.greetings span:nth-child(9) { --i: 7; }
+.greetings span:nth-child(10) { --i: 8; }
+.greetings span:nth-child(11) { --i: 9; }
+.greetings span:nth-child(12) { --i: 10; }
+.greetings span:nth-child(13) { --i: 11; }
+.greetings span:nth-child(14) { --i: 12; }
+.greetings span:nth-child(15) { --i: 13; }
+.greetings span:nth-child(16) { --i: 14; }
+
+.description {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: clamp(15px, 3vw, 20px);
+    text-align: center;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.description p {
+    margin-bottom: 0.5rem;
+}
+
+.navigation {
+    margin-top: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    padding: clamp(12px, 3vw, 20px) clamp(30px, 5vw, 50px);
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+@keyframes glow {
+    0%, 100% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+        justify-content: center;
+        padding-top: calc(12vh + env(safe-area-inset-top, 0px));
+        padding-left: calc(10px + env(safe-area-inset-left, 0px));
+        padding-right: calc(10px + env(safe-area-inset-right, 0px));
+    }
+    
+    .container {
+        padding: 0 10px;
+        margin-top: 0;
+        transform: translateY(-3vh); /* subir main 3% aprox del alto de viewport */
+    }
+    /* Subir el bloque secundario (botón/navegación) 5% adicional */
+    .navigation {
+        transform: translateY(-5vh);
+    }
+    
+    .greetings {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: 1.25rem;
+        /* Force perfect horizontal centering on mobile */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        white-space: normal; /* avoid overflow that can look off-center */
+        text-align: center;
+    }
+
+    /* Opción B: permitir wrap pero sin forzarlo en ≤768px */
+    .greetings h1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-wrap: balance;
+    }
+    .greetings span { white-space: normal; }
+    /* Evitar quiebre forzado en 700px: el span.space vuelve a ocupar tamaño natural */
+    .greetings .space {
+        flex-basis: auto;
+        width: 0.6ch;
+        height: auto;
+        line-height: inherit;
+        font-size: inherit;
+    }
+    
+    .description {
+        font-size: 1.15rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 18px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px 15px;
+        padding-top: calc(13vh + env(safe-area-inset-top, 0px));
+        padding-left: calc(15px + env(safe-area-inset-left, 0px));
+        padding-right: calc(15px + env(safe-area-inset-right, 0px));
+    }
+    
+    .greetings {
+        font-weight: 800;
+        font-size: clamp(2rem, 10vw, 3rem);
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+
+    /* En anchos muy pequeños sí forzamos el salto en el espacio */
+    .greetings .space {
+        flex-basis: 100%;
+        width: 100%;
+        height: 0;
+        line-height: 0;
+        font-size: 0;
+    }
+
+    .mobile-break { display: block; }
+    
+    .description {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn {
+        padding: 16px 25px;
+        font-size: 1rem;
+    }
+}
+
+/* Ajuste del br controlado: sólo visible en ≤480px */
+.mobile-break { display: none; }
+@media screen and (max-width: 480px) {
+  .mobile-break { display: block; }
+}
+
+@media screen and (max-width: 380px) {
+    body {
+        padding: 10px;
+        padding-top: calc(12vh + env(safe-area-inset-top, 0px));
+        padding-left: calc(10px + env(safe-area-inset-left, 0px));
+        padding-right: calc(10px + env(safe-area-inset-right, 0px));
+    }
+    
+    .greetings {
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+    /* Opción B activa también para ≤768px */
+    .greetings h1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-wrap: balance;
+    }
+    .greetings span { white-space: normal; }
+    .greetings .space {
+        flex-basis: 100%;
+        width: 100%;
+        height: 0;
+        line-height: 0;
+        font-size: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .greetings span {
+        animation: none;
+    }
+    
+    .btn {
+        transition: none;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --primary-color: #111;
+        --bg-color: #f5f5f5;
+        --accent-color: rgba(0, 0, 0, 0.1);
+        --border-color: rgba(0, 0, 0, 0.25);
+    }
+}
