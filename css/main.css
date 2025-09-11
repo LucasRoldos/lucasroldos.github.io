@@ -1046,7 +1046,7 @@ h1 {
 /* Controles de usuario */
 .controls {
     position: fixed;
-    bottom: 20px;
+    bottom: 40px;
     right: 20px;
     display: flex;
     gap: 10px;
@@ -1284,7 +1284,4 @@ h1 {
         color: #ffff00;
         text-shadow: 2px 2px 0 #000;
     }
-}
-
-
 }
