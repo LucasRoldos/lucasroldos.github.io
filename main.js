@@ -81,7 +81,7 @@ class FloresAmarillasApp {
         const prompt = document.createElement('div');
         prompt.className = 'play-prompt';
         prompt.innerHTML = `
-            <p>❗ Haga click para que arranque la locomotoraaa</p>
+            <p>❗Haga click para que arranque la cosa pue</p>
             <button onclick="this.parentElement.remove()" class="close-btn">×</button>
         `;
         
