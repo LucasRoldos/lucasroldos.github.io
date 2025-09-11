@@ -1286,11 +1286,7 @@ h1 {
     }
 }
 
-/* Modo oscuro/claro */
-@media (prefers-color-scheme: light) {
-  :root {
-    --dark-color: #f5f5f5;
-  }
+
 
   body {
     background: linear-gradient(to bottom, #ffffff, #e8e8e8);
