@@ -57,77 +57,24 @@ class FloresAmarillasApp {
     }
 
     setupControls() {
-        // Solo vincular los controles existentes del HTML
-        this.bindControlEvents();
-        
-        // Configurar estado inicial e intentar reproducir
+        // Intentar reproducir automáticamente al cargar
         if (this.audio) {
             const playPromise = this.audio.play();
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    // Autoplay started
-                    document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">⏸️</span>';
+                    // Autoplay started successfully
                     this.isPlaying = true;
-                    this.resumeAnimations(); // Keep animations running
+                    this.resumeAnimations();
+                    console.log('Audio started automatically');
                 }).catch(error => {
-                    // Autoplay was prevented.
+                    // Autoplay was prevented - show prompt
                     console.warn('Autoplay was prevented. User interaction needed.', error);
-                    document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">▶️</span>';
                     this.isPlaying = false;
-                    this.pauseAnimations(); // Pause animations since audio is paused
+                    this.pauseAnimations();
                     this.showPlayPrompt();
                 });
             }
-
-            document.getElementById('muteBtn').innerHTML = this.audio.muted ? '<span class="mute-icon">🔇</span>' : '<span class="mute-icon">🔊</span>';
         }
-    }
-
-    bindControlEvents() {
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const muteBtn = document.getElementById('muteBtn');
-        
-        if (playPauseBtn) {
-            playPauseBtn.addEventListener('click', () => this.togglePlayPause());
-        }
-        
-        if (muteBtn) {
-            muteBtn.addEventListener('click', () => this.toggleMute());
-        }
-    }
-
-    togglePlayPause() {
-        if (!this.audio) return;
-
-        if (this.isPlaying) {
-            this.audio.pause();
-            this.pauseAnimations();
-            document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">▶️</span>';
-        } else {
-            this.audio.play().catch(e => {
-                console.warn('Autoplay blocked:', e);
-                this.showPlayPrompt();
-            });
-            this.resumeAnimations();
-            document.getElementById('playPauseBtn').innerHTML = '<span class="play-icon">⏸️</span>';
-        }
-        
-        this.isPlaying = !this.isPlaying;
-    }
-
-    toggleMute() {
-        if (!this.audio) return;
-        
-        this.audio.muted = !this.audio.muted;
-        document.getElementById('muteBtn').innerHTML = this.audio.muted ? '<span class="mute-icon">🔇</span>' : '<span class="mute-icon">🔊</span>';
-    }
-
-    toggleReducedMotion() {
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        document.body.classList.toggle('reduced-motion', !prefersReduced);
-        
-        // Guardar preferencia
-        localStorage.setItem('reducedMotion', !prefersReduced);
     }
 
     showPlayPrompt() {
@@ -137,6 +84,19 @@ class FloresAmarillasApp {
             <p>🎵 Haz clic para comenzar la experiencia musical</p>
             <button onclick="this.parentElement.remove()" class="close-btn">×</button>
         `;
+        
+        // Hacer que el prompt funcione como botón de control
+        prompt.style.cursor = 'pointer';
+        prompt.addEventListener('click', () => {
+            this.audio.play().then(() => {
+                this.isPlaying = true;
+                this.resumeAnimations();
+                prompt.remove();
+            }).catch(error => {
+                console.error('Error starting playback:', error);
+            });
+        });
+        
         document.body.appendChild(prompt);
     }
 
@@ -190,23 +150,14 @@ class FloresAmarillasApp {
     }
 
     setupKeyboardNavigation() {
+        // Solo mantener navegación para movimiento reducido y escape
         document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case ' ':
-                    e.preventDefault();
-                    this.togglePlayPause();
-                    break;
-                case 'm':
-                case 'M':
-                    this.toggleMute();
-                    break;
-                case 'r':
-                    this.toggleReducedMotion();
-                    break;
-                case 'Escape':
-                    // Cerrar cualquier modal/prompt
-                    document.querySelectorAll('.play-prompt').forEach(el => el.remove());
-                    break;
+            if (e.key === 'r' || e.key === 'R') {
+                this.toggleReducedMotion();
+            } else if (e.key === 'Escape') {
+                // Cerrar cualquier prompt abierto
+                const prompts = document.querySelectorAll('.play-prompt');
+                prompts.forEach(prompt => prompt.remove());
             }
         });
     }
